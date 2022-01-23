@@ -18,6 +18,11 @@ object Dependencies {
             const val constraintLayout = "androidx.constraintlayout:constraintlayout:$version"
         }
 
+        object Paging3 {
+            private const val version = "3.1.0"
+            const val paging3 = "androidx.paging:paging-runtime:$version"
+        }
+
         object Fragment {
             private const val version = "1.4.0"
             const val fragment = "androidx.fragment:fragment-ktx:$version"
@@ -77,7 +82,7 @@ object Dependencies {
     object Dagger {
         const val version = "2.38.1"
         const val hiltAndroid = "com.google.dagger:hilt-android:$version"
-        const val hiltAndroidCompiler = "com.google.dagger:hilt-compiler:$version"
+        const val hiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:$version"
     }
 
     object Retrofit {
@@ -101,6 +106,11 @@ object Dependencies {
     object Coil {
         private const val version = "0.11.0"
         const val coil = "io.coil-kt:coil:$version"
+    }
+
+    object Lottie {
+        private const val version = "4.2.2"
+        const val lottie = "com.airbnb.android:lottie:$version"
     }
 
     object Test {

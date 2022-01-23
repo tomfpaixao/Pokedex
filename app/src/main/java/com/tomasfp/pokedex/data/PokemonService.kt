@@ -5,6 +5,6 @@ import retrofit2.http.GET
 
 interface PokemonService {
 
-    @GET("pokemon?limit=100")
+    @GET("pokemon")
     suspend fun getPokemonList() : PokemonResponse
 }

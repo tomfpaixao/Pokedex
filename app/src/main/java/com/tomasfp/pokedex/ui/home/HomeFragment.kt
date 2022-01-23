@@ -53,8 +53,8 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
             viewModel.state.collect { state ->
                 when(state) {
                     is State.Error -> handleError(state.error)
-                    is State.Idle -> binding?.progressbar?.gone()
-                    is State.Loading -> binding?.progressbar?.visible()
+                    is State.Idle -> binding?.loading?.gone()
+                    is State.Loading -> binding?.loading?.visible()
                     is State.Success -> onSuccess(state.pokemonList)
                 }
             }

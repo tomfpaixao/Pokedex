@@ -10,6 +10,6 @@ data class PokemonModel (
     ) : Parcelable {
         fun getPokemonImage() = "https://img.pokemondb.net/sprites/home/normal/${name.lowercase()}.png"
 
-        fun getPokemonIndex() = url.dropLast(1).takeLast(1).padStart(3,'0')
+        fun getPokemonIndex() = url.dropLast(1).takeLast(url.length - url.lastIndexOf('/'))
 
     }

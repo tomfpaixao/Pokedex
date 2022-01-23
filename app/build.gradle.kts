@@ -66,6 +66,7 @@ dependencies {
     implementation(Dependencies.AndroidX.RecyclerView.recyclerview)
     implementation(Dependencies.AndroidX.Navigation.fragment)
     implementation(Dependencies.AndroidX.Navigation.ui)
+    implementation(Dependencies.AndroidX.Paging3.paging3)
 //implementation(Dependencies.AndroidX.Hilt.viewModel)
 //kapt(Dependencies.AndroidX.Hilt.compiler)
 
@@ -88,6 +89,9 @@ dependencies {
 
 // Image Loading
     implementation(Dependencies.Coil.coil)
+
+    //Lottie
+    implementation(Dependencies.Lottie.lottie)
 
 // Test
     testImplementation(Dependencies.Test.Junit.junit)
