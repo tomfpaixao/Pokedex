@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
+import com.tomasfp.pokedex.R
 import com.tomasfp.pokedex.databinding.PokemonListItemBinding
 import com.tomasfp.pokedex.model.PokemonModel
 import com.tomasfp.pokedex.ui.home.HomeFragmentDirections
@@ -31,7 +32,7 @@ class PokemonListAdapter : ListAdapter<PokemonModel, PokemonListAdapter.ViewHold
         fun bind(pokemon: PokemonModel) {
             with(binding) {
                 textViewName.text = pokemon.name
-                imageView.load(pokemon.getPokemonImage())
+                imageView.load(pokemon.getPokemonImage()) { placeholder(R.drawable.ic_pokeball)}
                 textViewID.text = pokemon.getPokemonIndex()
                 root.setOnClickListener { view ->
                     val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(pokemon)

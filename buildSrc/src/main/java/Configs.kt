@@ -2,7 +2,7 @@ object Configs {
     val applicationId = "com.tomasfp.pokedex"
     val buildToolVersion = "30.0.3"
     val compileSdkVersion = 31
-    val minSdkVersion = 19
+    val minSdkVersion = 21
     val targetSdkVersion = 31
     val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     val versionCode = calculateVersionCode()

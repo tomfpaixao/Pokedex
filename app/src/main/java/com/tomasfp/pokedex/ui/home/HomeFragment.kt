@@ -13,10 +13,12 @@ import com.tomasfp.pokedex.databinding.FragmentHomeLayoutBinding
 import com.tomasfp.pokedex.model.PokemonModel
 import com.tomasfp.pokedex.ui.home.HomeViewModel.*
 import com.tomasfp.pokedex.ui.home.adapter.PokemonListAdapter
+import com.tomasfp.pokedex.ui.home.adapter.PokemonPagedAdapter
 import com.tomasfp.pokedex.utils.gone
 import com.tomasfp.pokedex.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -26,7 +28,7 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
 
     private var binding: FragmentHomeLayoutBinding? = null
 
-    private lateinit var adapter: PokemonListAdapter
+    private lateinit var adapter: PokemonPagedAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,15 +42,16 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = PokemonListAdapter()
+        adapter = PokemonPagedAdapter()
         binding?.homeRecyclerview?.adapter = adapter
         setObservers()
 
         viewModel.getPokemonList()
-
+        binding?.homeRecyclerview?.visible()
     }
 
     private fun setObservers() {
+        /*
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.state.collect { state ->
                 when(state) {
@@ -59,12 +62,23 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
                 }
             }
         }
+
+         */
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.getPokemonsPaged().collectLatest { pokemons ->
+                adapter.submitData(pokemons)
+            }
+        }
     }
 
+    /*
     private fun onSuccess(pokemonList: List<PokemonModel>) {
         binding?.homeRecyclerview?.visible()
         adapter.submitList(pokemonList)
     }
+
+     */
 
     private fun handleError(error: String?) {
         Toast.makeText(activity, "An error occurred: $error",Toast.LENGTH_LONG).show()

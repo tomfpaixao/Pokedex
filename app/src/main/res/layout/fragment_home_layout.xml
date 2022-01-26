@@ -5,16 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment"
+    android:background="@drawable/bg_gradient"
     android:orientation="vertical">
-
-   <com.airbnb.lottie.LottieAnimationView
-       android:id="@+id/loading"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       app:lottie_rawRes="@raw/loading_anim"
-       app:lottie_autoPlay="true"
-       app:lottie_loop="true"
-       android:layout_gravity="center" />
 
 
     <androidx.recyclerview.widget.RecyclerView

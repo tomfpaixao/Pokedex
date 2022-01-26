@@ -6,12 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="120dp"
     android:layout_margin="8dp"
-    android:background="@drawable/pokemon_item_background"
     android:clickable="true"
+    android:background="@drawable/pokemon_item_background"
     android:clipToPadding="false"
     android:focusable="true"
-    android:padding="8dp"
-    tools:backgroundTint="@color/hot_yellow">
+    android:padding="8dp">
 
     <TextView
         android:id="@+id/textViewName"
@@ -32,8 +31,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:alpha="0.25"
+        android:alpha="0.50"
         android:fontFamily="@font/montserrat"
+        android:textColor="@color/black"
         android:gravity="top"
         android:text="#001"
         android:textSize="18sp"
@@ -42,14 +42,14 @@
 
 
     <TextView
-        android:id="@+id/textViewType1"
+        android:id="@+id/textViewType2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textViewType2"
+        android:layout_above="@+id/textViewType1"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/montserrat"
         android:background="@drawable/pokemon_item_type_background"
+        android:fontFamily="@font/montserrat"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:text="Grass"
@@ -57,7 +57,7 @@
         android:textSize="14sp" />
 
     <TextView
-        android:id="@+id/textViewType2"
+        android:id="@+id/textViewType1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"

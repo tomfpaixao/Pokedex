@@ -2,6 +2,9 @@ package com.tomasfp.pokedex.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import androidx.paging.map
 import com.tomasfp.pokedex.model.PokemonModel
 import com.tomasfp.pokedex.model.PokemonResponse
 import com.tomasfp.pokedex.repository.HomeRepository
@@ -30,7 +33,15 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
             .catch { _state.value = State.Error() }
             .launchIn(viewModelScope)
 
-
+    fun getPokemonsPaged(): Flow<PagingData<PokemonModel>> {
+        return repository.pokemons
+            .map { pagingData ->
+                pagingData.map {
+                    it
+                }
+            }
+            .cachedIn(viewModelScope)
+    }
 
     sealed class State {
         data class Success(val pokemonList : List<PokemonModel>) : State()
