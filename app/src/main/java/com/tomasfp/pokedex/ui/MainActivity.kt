@@ -1,21 +1,29 @@
 package com.tomasfp.pokedex.ui
 
-import android.app.Activity
 import android.os.Bundle
+import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.tomasfp.pokedex.R
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.tomasfp.pokedex.databinding.ActivityMainBinding
-import com.tomasfp.pokedex.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(R.layout.activity_main) {
+class MainActivity : AppCompatActivity() {
 
-    private var binding : ActivityMainBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splash = installSplashScreen()
         super.onCreate(savedInstanceState)
+
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setupBottomNavigationBar(binding)
+    }
+
+    private fun setupBottomNavigationBar(binding: ActivityMainBinding) {
+        val navController = binding.navHostFragment.getFragment<NavHostFragment>().navController
+        navController.let { binding.bottomNav.setupWithNavController(it) }
     }
 }

@@ -8,11 +8,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import com.tomasfp.pokedex.R
 import com.tomasfp.pokedex.databinding.FragmentHomeLayoutBinding
+import com.tomasfp.pokedex.databinding.FragmentHomeLayoutCollapseBinding
 import com.tomasfp.pokedex.model.PokemonModel
 import com.tomasfp.pokedex.ui.home.HomeViewModel.*
 import com.tomasfp.pokedex.ui.home.adapter.PokemonListAdapter
+import com.tomasfp.pokedex.ui.home.adapter.PokemonLoadingStateAdapter
 import com.tomasfp.pokedex.ui.home.adapter.PokemonPagedAdapter
 import com.tomasfp.pokedex.utils.gone
 import com.tomasfp.pokedex.utils.visible
@@ -22,11 +25,12 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(R.layout.fragment_home_layout) {
+class HomeFragment : Fragment(R.layout.fragment_home_layout_collapse),
+    PokemonLoadingStateAdapter.RetryPressedListener {
 
     private val viewModel by viewModels<HomeViewModel>()
 
-    private var binding: FragmentHomeLayoutBinding? = null
+    private var binding: FragmentHomeLayoutCollapseBinding? = null
 
     private lateinit var adapter: PokemonPagedAdapter
 
@@ -35,7 +39,7 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeLayoutBinding.inflate(inflater, container, false)
+        binding = FragmentHomeLayoutCollapseBinding.inflate(inflater, container, false)
         return binding?.root
     }
 
@@ -43,7 +47,20 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = PokemonPagedAdapter()
-        binding?.homeRecyclerview?.adapter = adapter
+        val footerAdapter = PokemonLoadingStateAdapter(this)
+
+        binding?.homeRecyclerview?.adapter = adapter.withLoadStateFooter(footer = footerAdapter)
+
+        (binding?.homeRecyclerview?.layoutManager as GridLayoutManager).spanSizeLookup =  object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                return if (position == adapter.itemCount  && footerAdapter.itemCount > 0) {
+                    2
+                } else {
+                    1
+                }
+            }
+        }
+
         setObservers()
 
         viewModel.getPokemonList()
@@ -51,19 +68,6 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
     }
 
     private fun setObservers() {
-        /*
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.state.collect { state ->
-                when(state) {
-                    is State.Error -> handleError(state.error)
-                    is State.Idle -> binding?.loading?.gone()
-                    is State.Loading -> binding?.loading?.visible()
-                    is State.Success -> onSuccess(state.pokemonList)
-                }
-            }
-        }
-
-         */
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.getPokemonsPaged().collectLatest { pokemons ->
@@ -72,20 +76,13 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout) {
         }
     }
 
-    /*
-    private fun onSuccess(pokemonList: List<PokemonModel>) {
-        binding?.homeRecyclerview?.visible()
-        adapter.submitList(pokemonList)
-    }
-
-     */
-
-    private fun handleError(error: String?) {
-        Toast.makeText(activity, "An error occurred: $error",Toast.LENGTH_LONG).show()
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
+    }
+
+    override fun onRetryPressed() {
+        adapter.refresh()
     }
 }

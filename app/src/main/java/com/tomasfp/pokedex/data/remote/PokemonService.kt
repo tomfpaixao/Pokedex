@@ -1,4 +1,4 @@
-package com.tomasfp.pokedex.data
+package com.tomasfp.pokedex.data.remote
 
 import com.tomasfp.pokedex.model.PokemonDetailResponse
 import com.tomasfp.pokedex.model.PokemonResponse

@@ -44,7 +44,7 @@ object Dependencies {
         }
 
         object Navigation {
-            const val version = "2.3.0"
+            const val version = "2.4.0"
             const val fragment = "androidx.navigation:navigation-fragment-ktx:$version"
             const val ui = "androidx.navigation:navigation-ui-ktx:$version"
         }
@@ -55,10 +55,11 @@ object Dependencies {
         }
 
         object Room {
-            private const val version = "2.2.5"
+            private const val version = "2.4.1"
             const val runtime = "androidx.room:room-runtime:$version"
             const val compiler = "androidx.room:room-compiler:$version"
-            const val ktx = "androidx.room:room-ktx:$version"
+            const val roomKtx = "androidx.room:room-ktx:$version"
+            const val roomPaging = "androidx.room:room-paging:$version"
             const val testing = "androidx.room:room-testing:$version"
         }
     }

@@ -3,7 +3,7 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
-    id("androidx.navigation.safeargs.kotlin")
+    id("androidx.navigation.safeargs")
     id("kotlin-parcelize")
 }
 
@@ -92,6 +92,12 @@ dependencies {
 
     //Lottie
     implementation(Dependencies.Lottie.lottie)
+
+    //Room
+    implementation(Dependencies.AndroidX.Room.roomKtx)
+    implementation(Dependencies.AndroidX.Room.runtime)
+    implementation(Dependencies.AndroidX.Room.roomPaging)
+    kapt(Dependencies.AndroidX.Room.compiler)
 
 // Test
     testImplementation(Dependencies.Test.Junit.junit)

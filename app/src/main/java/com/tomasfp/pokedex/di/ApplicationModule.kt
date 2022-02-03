@@ -1,11 +1,16 @@
 package com.tomasfp.pokedex.di
 
+import android.content.Context
+import androidx.room.Room
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import com.tomasfp.pokedex.data.PokemonService
+import com.tomasfp.pokedex.data.db.AppDB
+import com.tomasfp.pokedex.data.db.Converters
+import com.tomasfp.pokedex.data.remote.PokemonService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -50,4 +55,20 @@ class ApplicationModule {
     fun providePokemonService(retrofit: Retrofit) : PokemonService {
         return retrofit.create(PokemonService::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun provideDatabase(
+        @ApplicationContext app: Context
+    ): AppDB {
+        return Room.databaseBuilder(
+            app,
+            AppDB::class.java,
+            "pokedex_db"
+        ).build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideYourDao(db: AppDB) = db.pokemonDao()
 }

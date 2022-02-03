@@ -12,15 +12,24 @@
         tools:layout="@layout/fragment_home_layout" >
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@+id/detailFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.tomasfp.pokedex.ui.detail.DetailFragment"
-        android:label="fragment_detail">
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail_layout">
         <argument
             android:name="pokemon"
             app:argType="com.tomasfp.pokedex.model.PokemonModel" />
     </fragment>
+
+    <fragment
+        android:id="@+id/tab2"
+        android:name="com.tomasfp.pokedex.ui.detail.DetailFragment"
+        android:label="tab2"
+        tools:layout="@layout/fragment_detail_layout" >
+    </fragment>
+
 </navigation>
