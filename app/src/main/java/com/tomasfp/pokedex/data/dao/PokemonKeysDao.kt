@@ -7,7 +7,7 @@ import androidx.room.Query
 import com.tomasfp.pokedex.data.db.PokemonKeys
 
 @Dao
-interface RedditKeysDao {
+interface PokemonKeysDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(remoteKey: List<PokemonKeys>)
@@ -17,4 +17,7 @@ interface RedditKeysDao {
 
     @Query("DELETE FROM remote_keys")
     fun clearRemoteKeys()
+
+    @Query("SELECT * FROM remote_keys")
+    suspend fun getKeys(): List<PokemonKeys>
 }

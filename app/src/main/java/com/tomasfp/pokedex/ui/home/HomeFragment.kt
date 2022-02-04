@@ -63,15 +63,30 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout_collapse),
 
         setObservers()
 
-        viewModel.getPokemonList()
+        viewModel.getPokemonsPaged()
         binding?.homeRecyclerview?.visible()
     }
 
     private fun setObservers() {
 
+        /*
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.getPokemonsPaged().collectLatest { pokemons ->
                 adapter.submitData(pokemons)
+            }
+        }
+
+         */
+
+        lifecycleScope.launch {
+            viewModel.state.collectLatest { state ->
+                when (state) {
+                    is State.Loading -> {
+                    }
+                    is State.PokemonList -> {
+                        adapter.submitData(state.pokeList)
+                    }
+                }
             }
         }
     }

@@ -13,6 +13,9 @@ interface PokemonDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(pokemons: List<PokemonModel>)
 
+    @Query("SELECT Count(name) from pokemons")
+    suspend fun getPokemonCount(): Int
+
     @Query("SELECT * FROM pokemons")
     fun pagingSource(): PagingSource<Int,PokemonModel>
 

@@ -10,30 +10,18 @@ import com.tomasfp.pokedex.model.PokemonResponse
 import com.tomasfp.pokedex.repository.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val repository: HomeRepository) : ViewModel() {
 
-    private val _state = MutableStateFlow<State>(State.Idle)
+    private val _state = MutableStateFlow<State>(State.Loading)
     val state: StateFlow<State> = _state
 
-    fun getPokemonList() =
-        repository.getPokemonList()
-            .onStart { _state.value = State.Loading }
-            .onEach { result ->
-                result.onSuccess {  pokemonList ->
-                    _state.value = State.Success(pokemonList.results)
-                }
-                    .onFailure {
-                        _state.value = State.Error(it.message)
-                    }
-            }
-            .onCompletion { _state.value = State.Idle }
-            .catch { _state.value = State.Error() }
-            .launchIn(viewModelScope)
 
-    fun getPokemonsPaged(): Flow<PagingData<PokemonModel>> {
+    fun getPokemonsPaged() {
+        /*
         return repository.pokemons
             .map { pagingData ->
                 pagingData.map {
@@ -41,13 +29,20 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
                 }
             }
             .cachedIn(viewModelScope)
+
+         */
+        viewModelScope.launch {
+            _state.value = State.Loading
+            repository.pokemons.cachedIn(viewModelScope)
+                .collectLatest {
+                    _state.value = State.PokemonList(it)
+                }
+        }
     }
 
     sealed class State {
-        data class Success(val pokemonList : List<PokemonModel>) : State()
-        data class Error(val error : String? = "") : State()
         object Loading : State()
-        object Idle : State()
+        data class PokemonList(val pokeList: PagingData<PokemonModel>) : State()
     }
 
 }

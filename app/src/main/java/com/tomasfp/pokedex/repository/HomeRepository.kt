@@ -31,7 +31,6 @@ class HomeRepository @Inject constructor(private val service : PokemonService, p
     val pokemons: Flow<PagingData<PokemonModel>> =
         Pager(config = PagingConfig(
             pageSize = 20,
-            prefetchDistance = 10,
             enablePlaceholders = true,
         ),
             remoteMediator = PokemonRemoteMediator(service,database),
