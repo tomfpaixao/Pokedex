@@ -8,14 +8,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Configs.compileSdkVersion)
+    compileSdk = Configs.compileSdkVersion
     buildToolsVersion = Configs.buildToolVersion
 
     defaultConfig {
         applicationId = Configs.applicationId
-        minSdkVersion (Configs.minSdkVersion)
-        targetSdkVersion (Configs.targetSdkVersion)
-        versionCode = Configs.versionCode
+        minSdk = Configs.minSdkVersion
+        targetSdk =  Configs.targetSdkVersion
+        versionCode = Configs.versionCode + 1
         versionName = Configs.versionName
         multiDexEnabled = true
 
@@ -33,8 +33,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
         jvmTarget = "1.8"

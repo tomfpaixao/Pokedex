@@ -4,9 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import androidx.paging.map
 import com.tomasfp.pokedex.model.PokemonModel
-import com.tomasfp.pokedex.model.PokemonResponse
 import com.tomasfp.pokedex.repository.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -19,18 +17,7 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
     private val _state = MutableStateFlow<State>(State.Loading)
     val state: StateFlow<State> = _state
 
-
     fun getPokemonsPaged() {
-        /*
-        return repository.pokemons
-            .map { pagingData ->
-                pagingData.map {
-                    it
-                }
-            }
-            .cachedIn(viewModelScope)
-
-         */
         viewModelScope.launch {
             _state.value = State.Loading
             repository.pokemons.cachedIn(viewModelScope)

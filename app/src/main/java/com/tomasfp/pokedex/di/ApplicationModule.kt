@@ -7,6 +7,9 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.tomasfp.pokedex.data.db.AppDB
 import com.tomasfp.pokedex.data.db.Converters
 import com.tomasfp.pokedex.data.remote.PokemonService
+import com.tomasfp.pokedex.repository.HomeRepository
+import com.tomasfp.pokedex.repository.HomeRepositoryImpl
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -56,6 +59,7 @@ class ApplicationModule {
         return retrofit.create(PokemonService::class.java)
     }
 
+
     @Singleton
     @Provides
     fun provideDatabase(
@@ -67,8 +71,4 @@ class ApplicationModule {
             "pokedex_db"
         ).build()
     }
-
-    @Singleton
-    @Provides
-    fun provideYourDao(db: AppDB) = db.pokemonDao()
 }

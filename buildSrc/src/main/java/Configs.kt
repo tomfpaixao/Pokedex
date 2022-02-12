@@ -1,17 +1,17 @@
 object Configs {
-    val applicationId = "com.tomasfp.pokedex"
-    val buildToolVersion = "30.0.3"
-    val compileSdkVersion = 31
-    val minSdkVersion = 21
-    val targetSdkVersion = 31
-    val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    val versionCode = calculateVersionCode()
-    val versionName = calculateVersionName()
-    private val versionMajor = 1
-    private val versionMinor = 0
-    private val versionPatch = 0
+    const val applicationId = "com.tomasfp.pokedex"
+    const val buildToolVersion = "30.0.3"
+    const val compileSdkVersion = 31
+    const val minSdkVersion = 21
+    const val targetSdkVersion = 31
+    const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    val versionCode = versionCode()
+    val versionName = versionName()
+    private const val versionMajor = 1
+    private const val versionMinor = 0
+    private const val versionPatch = 0
 
-    private fun calculateVersionCode(): Int = versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100
+    private fun versionCode(): Int = versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100
 
-    private fun calculateVersionName(): String = "${versionMajor}.${versionMinor}.${versionPatch}"
+    private fun versionName(): String = "${versionMajor}.${versionMinor}.${versionPatch}"
 }

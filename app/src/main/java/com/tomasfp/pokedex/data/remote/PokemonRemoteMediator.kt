@@ -1,6 +1,5 @@
 package com.tomasfp.pokedex.data.remote
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -10,10 +9,6 @@ import com.tomasfp.pokedex.data.db.AppDB
 import com.tomasfp.pokedex.data.db.PokemonKeys
 import com.tomasfp.pokedex.model.PokemonModel
 import com.tomasfp.pokedex.model.toModel
-import retrofit2.HttpException
-import java.io.IOException
-import java.io.InvalidObjectException
-import java.lang.Exception
 import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)
@@ -31,7 +26,6 @@ class PokemonRemoteMediator @Inject constructor(
         state: PagingState<Int, PokemonModel>
     ): MediatorResult {
         try {
-        Log.d("PokedexDB", "LOADTYPE" + loadType.name)
             val page = when (loadType) {
                 LoadType.REFRESH -> {
                     val keys = getClosestKey(state)
@@ -41,11 +35,13 @@ class PokemonRemoteMediator @Inject constructor(
                 LoadType.PREPEND -> return MediatorResult.Success(endOfPaginationReached = true)
 
                 LoadType.APPEND -> {
-                    try {
                     val remoteKeys = getLastItemKey(state)
-                    remoteKeys?.nextKey ?: return MediatorResult.Success(true)
-                    } catch (e: InvalidObjectException) {
-                        return MediatorResult.Error(e)
+                    when {
+                        remoteKeys == null -> 0
+                        remoteKeys.nextKey == null -> return MediatorResult.Success(
+                            endOfPaginationReached = true
+                        )
+                        else -> remoteKeys.nextKey
                     }
                 }
             }
@@ -79,30 +75,13 @@ class PokemonRemoteMediator @Inject constructor(
                 }
 
                 pokemonDao.insertAll(pokemons)
-                Log.d("PokedexDB", "Inserting pokemons" + pokemons.size)
                 keysDao.insertAll(keys)
-                Log.d("PokedexDB", "Inserting keys" + "First k: " + keys.first().name + " " + keys.first().prevKey + keys.first().nextKey )
             }
             return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
-        } catch (e :Exception) {
+        } catch (e: Exception) {
             return MediatorResult.Error(e)
         }
 
-    }
-
-    private suspend fun callPokemonService(
-        state: PagingState<Int, PokemonModel>,
-        page: Int
-    ): List<PokemonModel> {
-        val response = service.getPokemonList(
-            limit = state.config.pageSize,
-            offset = page * state.config.pageSize
-        )
-        val pokemons = response.results.map {
-            val type = service.getPokemonDetail(it.name).types.toModel()
-            PokemonModel(it.name, it.url, type)
-        }
-        return pokemons
     }
 
     private suspend fun getLastItemKey(state: PagingState<Int, PokemonModel>): PokemonKeys? {
@@ -125,11 +104,5 @@ class PokemonRemoteMediator @Inject constructor(
 
     }
 
-    override suspend fun initialize(): InitializeAction {
-        return if (pokemonDao.getPokemonCount() > 0) {
-            InitializeAction.SKIP_INITIAL_REFRESH
-        } else {
-            InitializeAction.LAUNCH_INITIAL_REFRESH
-        }
-    }
+    override suspend fun initialize() = InitializeAction.SKIP_INITIAL_REFRESH
 }

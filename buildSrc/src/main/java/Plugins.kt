@@ -1,6 +1,6 @@
 object Plugins {
     object Gradle {
-        private const val version = "4.1.1"
+        private const val version = "7.1.1"
         const val plugin = "com.android.tools.build:gradle:$version"
     }
 
