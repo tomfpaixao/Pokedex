@@ -5,19 +5,32 @@
     android:layout_height="match_parent"
     android:background="@color/water">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_pikachu_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="250dp"
-        android:background="@color/white"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:background="@drawable/pokemon_detail_background"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView">
 
         <TextView
+            android:id="@+id/pokemonName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
             android:gravity="center"
-            android:text="Squirtle"
+            android:textColor="@color/black"
             android:textSize="40sp" />
 
         <TextView
@@ -34,23 +47,33 @@
             android:textColor="@color/white"
             android:textSize="24sp" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="@font/montserrat"
-            android:gravity="center"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu risus faucibus, tincidunt enim in, facilisis leo. Nulla lobortis, justo et elementum rutrum, sem velit auctor justo, a vulputate mauris nisi nec nisl."
-            android:textSize="18sp" />
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical">
 
-        <com.google.android.material.progressindicator.LinearProgressIndicator
-            android:id="@+id/hpbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:trackThickness="6dp"
-            />
+            <include
+                android:id="@+id/statBar1"
+                layout="@layout/stats_bar_layout" />
+
+            <include
+                android:id="@+id/statBar2"
+                layout="@layout/stats_bar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" />
+
+            <include
+                android:id="@+id/statBar3"
+                layout="@layout/stats_bar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

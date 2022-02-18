@@ -8,7 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.tomasfp.pokedex.R
 import com.tomasfp.pokedex.databinding.FragmentHomeLayoutCollapseBinding
-import com.tomasfp.pokedex.ui.home.HomeViewModel.State
+import com.tomasfp.pokedex.ui.home.HomeViewModel.*
 import com.tomasfp.pokedex.ui.home.adapter.PokemonLoadingStateAdapter
 import com.tomasfp.pokedex.ui.home.adapter.PokemonPagedAdapter
 import com.tomasfp.pokedex.utils.viewBinding

@@ -17,7 +17,9 @@ data class PokemonDetailResponse(
     @Json(name = "types")
     val types: List<PokemonTypes>,
     @Json(name = "weight")
-    val weight: Int
+    val weight: Int,
+    @Json(name = "stats")
+    val stats: List<PokemonStat>
 )
 
 
