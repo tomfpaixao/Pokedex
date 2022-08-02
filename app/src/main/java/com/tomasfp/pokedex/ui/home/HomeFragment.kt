@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
 import com.tomasfp.pokedex.R
 import com.tomasfp.pokedex.databinding.FragmentHomeLayoutCollapseBinding
@@ -33,10 +34,18 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout_collapse),
         super.onViewCreated(view, savedInstanceState)
         setObservers()
         setAdapters()
+        setListeners()
 
         viewModel.getPokemonsPaged()
         binding.homeRecyclerview.visible()
     }
+
+    private fun setListeners() {
+        binding.searchButton.setOnClickListener {
+            viewModel.searchPokemon(binding.searchText.text)
+        }
+    }
+
 
     private fun setAdapters() {
         pokemonAdapter = PokemonPagedAdapter()
@@ -65,6 +74,17 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout_collapse),
                     is State.Loading -> {}
                     is State.PokemonList -> {
                         pokemonAdapter.submitData(state.pokeList)
+                    }
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.searchState.collectLatest { state ->
+                when (state) {
+                    is SearchState.Loading -> {}
+                    is SearchState.PokemonList -> {
+                        pokemonAdapter.submitData(PagingData.from(state.pokeList))
                     }
                 }
             }

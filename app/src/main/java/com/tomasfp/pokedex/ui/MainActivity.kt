@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.navigation.NavigationView
 import com.tomasfp.pokedex.databinding.ActivityMainBinding
 import com.tomasfp.pokedex.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,5 +24,6 @@ class MainActivity : AppCompatActivity() {
     private fun setupBottomNavigationBar(binding: ActivityMainBinding) {
         val navController = binding.navHostFragment.getFragment<NavHostFragment>().navController
         navController.let { binding.bottomNav.setupWithNavController(it) }
+        binding.bottomNav.itemIconTintList = null
     }
 }

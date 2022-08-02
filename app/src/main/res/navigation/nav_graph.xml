@@ -27,9 +27,9 @@
 
     <fragment
         android:id="@+id/tab2"
-        android:name="com.tomasfp.pokedex.ui.detail.DetailFragment"
+        android:name="com.tomasfp.pokedex.ui.fusion.PokeFusionFragment"
         android:label="tab2"
-        tools:layout="@layout/fragment_detail_layout" >
+        tools:layout="@layout/fragment_pokefusion_layout" >
     </fragment>
 
 </navigation>

@@ -1,5 +1,6 @@
 package com.tomasfp.pokedex.repository
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -33,6 +34,21 @@ class HomeRepositoryImpl @Inject constructor(private val service: PokemonService
         return flow {
             val pokemon = service.getPokemonDetail(name)
             emit(Result.success(pokemon))
+        }
+    }
+
+    override fun searchPokemon(string: String): Flow<Result<List<PokemonModel>>> {
+        return flow {
+            val pokemons = service.getPokemonList(limit = 100000, offset = 0)
+            val filtered = pokemons.results.filter { it.name.contains(string.lowercase()) }
+            emit(Result.success(filtered))
+        }
+    }
+
+    override fun getOriginalPokemons(): Flow<Result<List<PokemonModel>>> {
+        return flow {
+            val pokemons = service.getPokemonList(limit = 151, offset = 0)
+            emit(Result.success(pokemons.results))
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.tomasfp.pokedex.ui.home
 
+import android.text.Editable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -17,6 +18,11 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
     private val _state = MutableStateFlow<State>(State.Loading)
     val state: StateFlow<State> = _state
 
+    private val _searchState = MutableStateFlow<State>(State.Loading)
+    val searchState: StateFlow<State> = _searchState
+
+
+
     fun getPokemonsPaged() {
         viewModelScope.launch {
             _state.value = State.Loading
@@ -27,9 +33,25 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
         }
     }
 
+    fun searchPokemon(text: Editable?) {
+        viewModelScope.launch {
+            repository.searchPokemon(text.toString()).collectLatest { result ->
+                result.onSuccess {
+                    _searchState.value = SearchState.PokemonList(it)
+                }
+
+            }
+        }
+    }
+
     sealed class State {
         object Loading : State()
         data class PokemonList(val pokeList: PagingData<PokemonModel>) : State()
+    }
+
+    sealed class SearchState {
+        object Loading : State()
+        data class PokemonList(val pokeList: List<PokemonModel>) : State()
     }
 
 }

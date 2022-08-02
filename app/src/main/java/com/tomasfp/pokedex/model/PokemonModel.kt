@@ -16,5 +16,6 @@ data class PokemonModel (
         fun getPokemonImage() = "https://img.pokemondb.net/sprites/home/normal/${name.lowercase()}.png"
         fun cleanId() = url.dropLast(1).split("/").last()
         fun getPokemonIndex() = url.dropLast(1).split("/").last().padStart(3,'0')
+        fun getPokemonIndexNoPad() = url.dropLast(1).split("/").last()
 
     }
