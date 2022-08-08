@@ -18,5 +18,6 @@ enum class PokemonTypeModel {
     PSYCHIC,
     ROCK,
     STEEL,
-    WATER
+    WATER,
+    UNKNOWN
 }

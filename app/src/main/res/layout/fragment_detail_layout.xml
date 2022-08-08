@@ -2,8 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/water">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/imageView"
@@ -30,7 +29,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
             android:gravity="center"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorPrimary"
             android:textSize="40sp" />
 
         <TextView
@@ -48,30 +47,21 @@
             android:textSize="24sp" />
 
         <LinearLayout
+            android:id="@+id/barLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:orientation="vertical">
 
-            <include
-                android:id="@+id/statBar1"
-                layout="@layout/stats_bar_layout" />
-
-            <include
-                android:id="@+id/statBar2"
-                layout="@layout/stats_bar_layout"
-                android:layout_width="match_parent"
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/loading_anim"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
-
-            <include
-                android:id="@+id/statBar3"
-                layout="@layout/stats_bar_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
+                app:lottie_rawRes="@raw/loading_anim"
+                app:lottie_autoPlay="true"
+                />
 
         </LinearLayout>
 

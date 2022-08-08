@@ -116,4 +116,12 @@
         app:spanCount="2"
         tools:listitem="@layout/pokemon_list_item" />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading_anim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:lottie_rawRes="@raw/loading_anim"
+        app:lottie_autoPlay="true"
+        />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

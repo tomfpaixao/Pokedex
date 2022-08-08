@@ -1,8 +1,12 @@
 package com.tomasfp.pokedex.model
 
+import android.content.Context
 import android.os.Parcelable
+import androidx.core.content.ContextCompat
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.tomasfp.pokedex.R
+import com.tomasfp.pokedex.model.PokemonTypeModel.*
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -12,10 +16,4 @@ data class PokemonModel (
     val name : String ,
     val url: String,
     var type: List<PokemonTypeModel>?
-    ) : Parcelable {
-        fun getPokemonImage() = "https://img.pokemondb.net/sprites/home/normal/${name.lowercase()}.png"
-        fun cleanId() = url.dropLast(1).split("/").last()
-        fun getPokemonIndex() = url.dropLast(1).split("/").last().padStart(3,'0')
-        fun getPokemonIndexNoPad() = url.dropLast(1).split("/").last()
-
-    }
+    ) : Parcelable

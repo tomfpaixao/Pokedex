@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.annotation.MenuRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -55,11 +56,20 @@ class PokeFusionFragment : Fragment(R.layout.fragment_pokefusion_layout) {
                 if(it.leftPokemon != null && it.rightPokemon != null)
                     binding.fusionButton.isEnabled = true
             }
+
+        lifecycleScope.launch {
+            viewModel.nameFusioned.collectLatest {
+                binding.pokemonNameFusioned.text = it
+            }
+        }
     }
 
     private fun fusePokemons() {
-        val url = viewModel.fuse()
-        binding.fusionedImage.load(url) { placeholder(R.drawable.ic_pokeball)}
+        lifecycleScope.launch {
+            viewModel.fuse().collectLatest {
+                binding.fusionedImage.load(it) { placeholder(R.drawable.ic_pokeball) }
+            }
+        }
     }
 
 

@@ -1,10 +1,11 @@
 package com.tomasfp.pokedex.ui.home.adapter
 
-import android.annotation.SuppressLint
-import android.graphics.Color
-import android.graphics.drawable.Drawable
+import android.content.Context
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -12,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.tomasfp.pokedex.R
 import com.tomasfp.pokedex.databinding.PokemonListItemBinding
-import com.tomasfp.pokedex.model.PokemonModel
-import com.tomasfp.pokedex.model.PokemonTypeModel
+import com.tomasfp.pokedex.model.*
 import com.tomasfp.pokedex.model.PokemonTypeModel.*
+import com.tomasfp.pokedex.model.extensions.*
 import com.tomasfp.pokedex.ui.home.HomeFragmentDirections
 import com.tomasfp.pokedex.utils.gone
 
@@ -49,63 +50,48 @@ class PokemonViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
 
-    @SuppressLint("NewApi")
     fun bind(pokemon: PokemonModel?) {
         if (pokemon != null)
             with(binding) {
-                textViewName.text = pokemon.name.replaceFirstChar { it.uppercaseChar() }
+                textViewName.text = pokemon.capitalName()
+
                 imageView.load(pokemon.getPokemonImage()) { placeholder(R.drawable.ic_pokeball)}
                 root.context.let {
                     textViewID.text = it.getString(R.string.pokemon_index_placeholder,pokemon.getPokemonIndex())
-                    val bg = homeRelativeLayout.background
-                    bg.setTint(it.resources.getColor(setPokemonTypeBackground(pokemon.type?.firstOrNull()),it.theme))
-                    homeRelativeLayout.background = bg
-                    //FIXME
+
+                    val color = pokemon.getBackgroundColor(root.context)
+
+                    val drawable = homeRelativeLayout.background
+                    drawable.colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY)
+                    homeRelativeLayout.background = drawable
+
                 }
                 root.setOnClickListener { view ->
                     val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(pokemon)
                     view.findNavController().navigate(action)
                 }
-                setPokemonTypes(pokemon.type)
+
+                setPokemonTypes(pokemon)
             }
     }
 
-    private fun setPokemonTypeBackground(type: PokemonTypeModel?): Int {
-        return when (type) {
-            BUG -> R.color.bug
-            DARK -> R.color.dark
-            DRAGON -> R.color.dragon
-            ELECTRIC -> R.color.electric
-            FAIRY -> R.color.fairy
-            FIGHTING -> R.color.fighting
-            FIRE -> R.color.fire
-            FLYING -> R.color.flying
-            GHOST -> R.color.ghost
-            GRASS -> R.color.grass
-            GROUND -> R.color.ground
-            ICE -> R.color.ice
-            NORMAL ->R.color.normal
-            POISON -> R.color.poison
-            PSYCHIC -> R.color.psychic
-            ROCK -> R.color.rock
-            STEEL ->R.color.steel
-            WATER -> R.color.water
-            null -> R.color.white
-        }
-    }
-
-    private fun setPokemonTypes(typeList: List<PokemonTypeModel>?) {
+    private fun setPokemonTypes(pokemon: PokemonModel) {
         binding.apply {
-            if (typeList != null && typeList.isNotEmpty()) {
-                val slot1 = typeList.getOrNull(0)
-                val slot2 = typeList.getOrNull(1)
-
-                if(slot1 != null) textViewType1.text = slot1.name else textViewType1.gone()
-                if(slot2 != null) textViewType2.text = slot2.name else textViewType2.gone()
-
-            }else {
-                textViewType1.gone()
-                textViewType2.gone()
+            val leftSlot = pokemon.mainType()
+            val rightSlot = pokemon.secondaryType()
+            when {
+                leftSlot == UNKNOWN -> {
+                    textViewType1.gone()
+                    textViewType2.gone()
+                }
+                rightSlot == UNKNOWN -> {
+                    textViewType1.gone()
+                    textViewType2.text = leftSlot.name
+                }
+                else -> {
+                    textViewType2.text = leftSlot.name
+                    textViewType1.text = rightSlot.name
+                }
             }
         }
     }

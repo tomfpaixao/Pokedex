@@ -18,6 +18,4 @@ interface PokemonKeysDao {
     @Query("DELETE FROM remote_keys")
     fun clearRemoteKeys()
 
-    @Query("SELECT * FROM remote_keys")
-    suspend fun getKeys(): List<PokemonKeys>
 }

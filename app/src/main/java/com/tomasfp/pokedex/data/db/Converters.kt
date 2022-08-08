@@ -1,6 +1,5 @@
 package com.tomasfp.pokedex.data.db
 
-import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
 import com.tomasfp.pokedex.model.PokemonTypeModel
 

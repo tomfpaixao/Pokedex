@@ -18,9 +18,8 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
     private val _state = MutableStateFlow<State>(State.Loading)
     val state: StateFlow<State> = _state
 
-    private val _searchState = MutableStateFlow<State>(State.Loading)
-    val searchState: StateFlow<State> = _searchState
-
+    private val _searchState = MutableStateFlow<SearchState>(SearchState.Loading)
+    val searchState: StateFlow<SearchState> = _searchState
 
 
     fun getPokemonsPaged() {
@@ -50,8 +49,8 @@ class HomeViewModel @Inject constructor(private val repository: HomeRepository) 
     }
 
     sealed class SearchState {
-        object Loading : State()
-        data class PokemonList(val pokeList: List<PokemonModel>) : State()
+        object Loading : SearchState()
+        data class PokemonList(val pokeList: List<PokemonModel>) : SearchState()
     }
 
 }

@@ -19,7 +19,9 @@ import com.tomasfp.pokedex.databinding.PokemonSelectorBottomSheetBinding
 import com.tomasfp.pokedex.model.PokemonModel
 import com.tomasfp.pokedex.model.PokemonTypeModel
 import com.tomasfp.pokedex.ui.home.adapter.PokemonPagedAdapter
+import com.tomasfp.pokedex.utils.gone
 import com.tomasfp.pokedex.utils.viewBinding
+import com.tomasfp.pokedex.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
@@ -57,8 +59,9 @@ class PokemonSelectorBottomSheet(private val idView : Int): BottomSheetDialogFra
         lifecycleScope.launch {
             viewModel.state.collectLatest { state ->
                 when (state) {
-                    is PokeFusionViewModel.State.Loading -> {}
+                    is PokeFusionViewModel.State.Loading -> {binding.loadingAnim.visible()}
                     is PokeFusionViewModel.State.PokemonList -> {
+                        binding.loadingAnim.gone()
                         adapter.submitList(state.pokeList)
                     }
                 }

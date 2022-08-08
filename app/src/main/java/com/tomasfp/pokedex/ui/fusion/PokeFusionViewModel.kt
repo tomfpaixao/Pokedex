@@ -1,12 +1,11 @@
 package com.tomasfp.pokedex.ui.fusion
 
-import android.text.Editable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
 import com.tomasfp.pokedex.model.PokemonModel
+import com.tomasfp.pokedex.model.extensions.getPokemonIndexNoPad
 import com.tomasfp.pokedex.repository.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -21,6 +20,9 @@ class PokeFusionViewModel @Inject constructor(private val pokeRepository: HomeRe
 
     private val _state = MutableStateFlow<State>(State.Loading)
     val state: StateFlow<State> = _state
+
+    private val _nameFusioned = MutableStateFlow("")
+    val nameFusioned: StateFlow<String> = _nameFusioned
 
 
     fun getPokemons() {
@@ -40,8 +42,23 @@ class PokeFusionViewModel @Inject constructor(private val pokeRepository: HomeRe
         data class PokemonList(val pokeList: List<PokemonModel>) : State()
     }
 
-    fun fuse(): String {
-        return "https://images.alexonsager.net/pokemon/fused/${selectedPokemon.value?.leftPokemon?.getPokemonIndexNoPad()}/${selectedPokemon.value?.leftPokemon?.getPokemonIndexNoPad()}.${selectedPokemon.value?.rightPokemon?.getPokemonIndexNoPad()}.png"
+    fun fuse(): Flow<String> = flow {
+        val leftPokemonIndex = selectedPokemon.value?.leftPokemon?.getPokemonIndexNoPad()
+        val rightPokemonIndex = selectedPokemon.value?.rightPokemon?.getPokemonIndexNoPad()
+        emit("https://images.alexonsager.net/pokemon/fused/${leftPokemonIndex}/${leftPokemonIndex}.${rightPokemonIndex}.png")
+
+        fuseNames(selectedPokemon.value?.leftPokemon?.name,  selectedPokemon.value?.rightPokemon?.name)
+    }
+
+    private fun fuseNames(nameLeft: String?, nameRight: String?) {
+        val prefixLeft = nameLeft?.let {
+            it.take(it.length / 2)
+        }
+
+        val suffix = nameRight?.let {
+            it.takeLast(it.length / 2)
+        }
+        _nameFusioned.value = "You got a $prefixLeft$suffix."
     }
 
     fun updateLeftPokemon(pokemonModel: PokemonModel) {

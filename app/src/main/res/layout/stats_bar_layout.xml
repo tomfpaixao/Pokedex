@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:text="HP"
         android:textSize="18sp"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorPrimary"
         android:fontFamily="@font/montserrat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,7 +25,7 @@
 
         android:layout_marginStart="4dp"
         android:textSize="18sp"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorPrimary"
         android:text="42"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/label"

@@ -2,6 +2,7 @@ package com.tomasfp.pokedex.ui.home
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -12,6 +13,7 @@ import com.tomasfp.pokedex.databinding.FragmentHomeLayoutCollapseBinding
 import com.tomasfp.pokedex.ui.home.HomeViewModel.*
 import com.tomasfp.pokedex.ui.home.adapter.PokemonLoadingStateAdapter
 import com.tomasfp.pokedex.ui.home.adapter.PokemonPagedAdapter
+import com.tomasfp.pokedex.utils.showToast
 import com.tomasfp.pokedex.utils.viewBinding
 import com.tomasfp.pokedex.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,7 +44,11 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout_collapse),
 
     private fun setListeners() {
         binding.searchButton.setOnClickListener {
-            viewModel.searchPokemon(binding.searchText.text)
+            if(binding.searchText.text.isNullOrEmpty())
+                showToast("Please insert a search term")
+            else {
+                viewModel.searchPokemon(binding.searchText.text)
+            }
         }
     }
 
