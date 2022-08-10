@@ -1,11 +1,9 @@
 package com.tomasfp.pokedex.ui.home.adapter
 
-import android.content.Context
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -13,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.tomasfp.pokedex.R
 import com.tomasfp.pokedex.databinding.PokemonListItemBinding
-import com.tomasfp.pokedex.model.*
-import com.tomasfp.pokedex.model.PokemonTypeModel.*
+import com.tomasfp.pokedex.model.PokemonModel
+import com.tomasfp.pokedex.model.PokemonTypeModel.UNKNOWN
 import com.tomasfp.pokedex.model.extensions.*
 import com.tomasfp.pokedex.ui.home.HomeFragmentDirections
 import com.tomasfp.pokedex.utils.gone

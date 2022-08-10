@@ -13,6 +13,11 @@ object Dependencies {
             const val core = "androidx.core:core-ktx:$version"
         }
 
+        object SplashScreen {
+            private const val version = "1.0.0"
+            const val splashscreen = "androidx.core:core-splashscreen:$version"
+        }
+
         object ConstraintLayout {
             private const val version = "1.1.3"
             const val constraintLayout = "androidx.constraintlayout:constraintlayout:$version"
@@ -44,7 +49,7 @@ object Dependencies {
         }
 
         object Navigation {
-            const val version = "2.4.0"
+            private const val version = "2.4.0"
             const val fragment = "androidx.navigation:navigation-fragment-ktx:$version"
             const val ui = "androidx.navigation:navigation-ui-ktx:$version"
         }

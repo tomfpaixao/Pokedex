@@ -3,9 +3,9 @@
     <item
         android:id="@id/homeFragment"
         android:icon="@drawable/ic_pokeball"
-        android:title="PokeDex" />
+        android:title="@string/app_name" />
     <item
         android:id="@id/tab2"
         android:icon="@drawable/ic_pikachu_logo"
-        android:title="PokeFusion" />
+        android:title="@string/pokefusion" />
 </menu>

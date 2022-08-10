@@ -6,7 +6,7 @@ import com.tomasfp.pokedex.model.PokemonTypeModel
 class Converters {
 
     @TypeConverter
-    fun toPokemonType(value: String): List<PokemonTypeModel>? {
+    fun toPokemonType(value: String): List<PokemonTypeModel> {
         return value.split(",").map { enumValueOf(it) }
     }
 

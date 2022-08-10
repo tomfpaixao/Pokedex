@@ -1,32 +1,21 @@
 package com.tomasfp.pokedex.ui.fusion
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.tomasfp.pokedex.R
 import com.tomasfp.pokedex.databinding.PokemonSelectorBottomSheetBinding
-import com.tomasfp.pokedex.model.PokemonModel
-import com.tomasfp.pokedex.model.PokemonTypeModel
-import com.tomasfp.pokedex.ui.home.adapter.PokemonPagedAdapter
 import com.tomasfp.pokedex.utils.gone
 import com.tomasfp.pokedex.utils.viewBinding
 import com.tomasfp.pokedex.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.getAndUpdate
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint

@@ -42,7 +42,6 @@
             android:fontFamily="@font/montserrat"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            android:text="Water"
             android:textColor="@color/white"
             android:textSize="24sp" />
 

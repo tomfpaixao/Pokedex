@@ -9,7 +9,7 @@
         android:id="@+id/screenTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PokeFusion"
+        android:text="@string/pokefusion"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/montserrat"
@@ -34,7 +34,7 @@
         android:id="@+id/pokemonNameFusioned"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PokeFusion"
+        android:text="@string/pokefusion"
         app:layout_constraintTop_toBottomOf="@id/fusioned_image"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/montserrat"
@@ -54,14 +54,14 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/button_rounded"
-        android:text="Pokemon"
+        android:text="@string/pokemon"
         android:textColor="?attr/colorOnPrimary"
         app:layout_constraintTop_toBottomOf="@id/pokemonNameFusioned"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/pokeleft"
-        android:text="Pokemon"
+        android:text="@string/pokemon"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -74,7 +74,7 @@
 
     <Button
         android:id="@+id/fusion_button"
-        android:text="FUSION"
+        android:text="@string/pokefusion"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"

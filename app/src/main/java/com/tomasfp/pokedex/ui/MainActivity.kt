@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.navigation.NavigationView
 import com.tomasfp.pokedex.databinding.ActivityMainBinding
 import com.tomasfp.pokedex.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint

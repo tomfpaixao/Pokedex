@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">Pokedex</string>
+    <string name="pokemon">POKEMON</string>
     <string name="pokemon_index_placeholder">#%s</string>
+    <string name="search_hint">Please insert a search term</string>
+    <string name="search_title">Search for a Pokemon by it\'s name or by it\'s number.</string>
+    <string name="search_hint_name_number">Name or number</string>
+    <string name="search_name">Search</string>
+    <string name="pokefusion">PokeFusion</string>
+    <string name="retry_label">Retry</string>
+    <string name="pokefusion_choose">Choose your pokemon to fuse</string>
+
+
+
+
 </resources>

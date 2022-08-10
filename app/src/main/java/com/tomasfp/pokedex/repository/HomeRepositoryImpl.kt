@@ -1,6 +1,5 @@
 package com.tomasfp.pokedex.repository
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -10,10 +9,8 @@ import com.tomasfp.pokedex.data.remote.PokemonRemoteMediator
 import com.tomasfp.pokedex.data.remote.PokemonService
 import com.tomasfp.pokedex.model.PokemonDetailResponse
 import com.tomasfp.pokedex.model.PokemonModel
-import com.tomasfp.pokedex.model.PokemonResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import java.lang.Exception
 import javax.inject.Inject
 
 class HomeRepositoryImpl @Inject constructor(private val service: PokemonService, private val database: AppDB) :

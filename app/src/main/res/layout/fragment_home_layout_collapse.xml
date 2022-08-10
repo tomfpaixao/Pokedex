@@ -33,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="Pokedex"
+                    android:text="@string/app_name"
                     android:textColor="@color/text_color"
                     android:fontFamily="@font/montserrat"
                     android:textSize="40sp"
@@ -44,7 +44,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:fontFamily="@font/montserrat"
-                    android:text="Search for a Pokemon by it's name or by it's number."
+                    android:text="@string/search_title"
                     android:textColor="@color/text_color"
                     android:textSize="20sp"
                     android:layout_marginStart="16dp" />
@@ -76,7 +76,7 @@
                             android:fontFamily="@font/montserrat"
                             android:textColorHint="@color/text_color"
                             android:background="@null"
-                            android:hint="Name or number"
+                            android:hint="@string/search_hint_name_number"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +87,7 @@
                             android:id="@+id/search_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Search"
+                            android:text="@string/search_name"
                             android:layout_marginEnd="16dp"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -107,7 +107,6 @@
         android:id="@+id/home_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/header"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
@@ -115,13 +114,5 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:spanCount="2"
         tools:listitem="@layout/pokemon_list_item" />
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/loading_anim"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:lottie_rawRes="@raw/loading_anim"
-        app:lottie_autoPlay="true"
-        />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

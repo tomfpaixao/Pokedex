@@ -5,11 +5,7 @@ import androidx.room.Room
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.tomasfp.pokedex.data.db.AppDB
-import com.tomasfp.pokedex.data.db.Converters
 import com.tomasfp.pokedex.data.remote.PokemonService
-import com.tomasfp.pokedex.repository.HomeRepository
-import com.tomasfp.pokedex.repository.HomeRepositoryImpl
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

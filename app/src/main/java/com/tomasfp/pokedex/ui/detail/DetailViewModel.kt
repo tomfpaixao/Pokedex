@@ -2,10 +2,7 @@ package com.tomasfp.pokedex.ui.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
 import com.tomasfp.pokedex.model.PokemonDetailResponse
-import com.tomasfp.pokedex.model.PokemonModel
 import com.tomasfp.pokedex.repository.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel

@@ -8,7 +8,6 @@
         android:id="@+id/label"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="HP"
         android:textSize="18sp"
         android:textColor="?attr/colorPrimary"
         android:fontFamily="@font/montserrat"
@@ -26,7 +25,6 @@
         android:layout_marginStart="4dp"
         android:textSize="18sp"
         android:textColor="?attr/colorPrimary"
-        android:text="42"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/label"
         />

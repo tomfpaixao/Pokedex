@@ -52,11 +52,11 @@ android {
 dependencies {
 // Kotlin
     implementation(Dependencies.Kotlin.kotlin)
-//implementation(Dependencies.Kotlin.Coroutines.core)
     implementation(Dependencies.Kotlin.Coroutines.android)
 
 // AndroidX
     implementation(Dependencies.AndroidX.Core.core)
+    implementation(Dependencies.AndroidX.SplashScreen.splashscreen)
     implementation(Dependencies.AndroidX.AppCompat.appcompat)
     implementation(Dependencies.AndroidX.ConstraintLayout.constraintLayout)
     implementation(Dependencies.AndroidX.Fragment.fragment)
@@ -67,8 +67,6 @@ dependencies {
     implementation(Dependencies.AndroidX.Navigation.fragment)
     implementation(Dependencies.AndroidX.Navigation.ui)
     implementation(Dependencies.AndroidX.Paging3.paging3)
-//implementation(Dependencies.AndroidX.Hilt.viewModel)
-//kapt(Dependencies.AndroidX.Hilt.compiler)
 
 // Material
     implementation(Dependencies.Material.material)
@@ -103,7 +101,5 @@ dependencies {
     testImplementation(Dependencies.Test.Junit.junit)
     androidTestImplementation(Dependencies.Test.Ext.ext)
     androidTestImplementation(Dependencies.Test.Espresso.espresso)
-
-    implementation ("androidx.core:core-splashscreen:1.0.0-beta01")
 
 }

@@ -1,12 +1,7 @@
 package com.tomasfp.pokedex.ui.detail
 
-import StatBarLayout
-import android.graphics.PorterDuff
-import android.graphics.PorterDuffColorFilter
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -15,7 +10,6 @@ import coil.api.load
 import com.tomasfp.pokedex.R
 import com.tomasfp.pokedex.databinding.FragmentDetailLayoutBinding
 import com.tomasfp.pokedex.model.PokemonDetailResponse
-import com.tomasfp.pokedex.model.PokemonTypeModel
 import com.tomasfp.pokedex.model.extensions.capitalName
 import com.tomasfp.pokedex.model.extensions.getBackgroundColor
 import com.tomasfp.pokedex.model.extensions.getPokemonImage

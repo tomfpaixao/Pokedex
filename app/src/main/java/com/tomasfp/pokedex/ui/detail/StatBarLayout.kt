@@ -1,10 +1,9 @@
+package com.tomasfp.pokedex.ui.detail
+
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import androidx.core.content.withStyledAttributes
-import com.tomasfp.pokedex.R
-import com.tomasfp.pokedex.databinding.ActivityMainBinding.inflate
 import com.tomasfp.pokedex.databinding.StatsBarLayoutBinding
 
 class StatBarLayout @JvmOverloads constructor(

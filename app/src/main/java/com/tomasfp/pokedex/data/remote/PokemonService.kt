@@ -1,5 +1,6 @@
 package com.tomasfp.pokedex.data.remote
 
+import com.tomasfp.pokedex.data.remote.network.ApiResult
 import com.tomasfp.pokedex.model.PokemonDetailResponse
 import com.tomasfp.pokedex.model.PokemonResponse
 import retrofit2.http.GET
