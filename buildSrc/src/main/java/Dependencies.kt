@@ -70,7 +70,7 @@ object Dependencies {
     }
 
     object Kotlin {
-        const val version = "1.5.31"
+        const val version = "1.7.0"
         const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:$version"
 
         object Coroutines {
@@ -86,7 +86,7 @@ object Dependencies {
     }
 
     object Dagger {
-        const val version = "2.38.1"
+        const val version = "2.42"
         const val hiltAndroid = "com.google.dagger:hilt-android:$version"
         const val hiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:$version"
     }
@@ -104,7 +104,7 @@ object Dependencies {
     }
 
     object Moshi {
-        private const val version = "1.12.0"
+        private const val version = "1.13.0"
         const val moshi = "com.squareup.moshi:moshi-kotlin:$version"
         const val moshiCodegen = "com.squareup.moshi:moshi-kotlin-codegen:$version"
     }
