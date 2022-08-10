@@ -1,7 +1,7 @@
 <h1 align="center">Pokedex</h1>
 
 <p align="center">  
-Pokedex demonstrates modern Android development with Hilt, Coroutines, Flow, Jetpack (Room, ViewModel), and Material Design based on MVVM architecture.
+Pokedex is a pokemon browser and a way for you to merge any of the first 150 pokemons to see what you get.
 </p>
 </br>
 
