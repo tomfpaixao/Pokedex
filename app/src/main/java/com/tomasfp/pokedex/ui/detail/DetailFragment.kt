@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import coil.api.load
 import com.tomasfp.pokedex.R
 import com.tomasfp.pokedex.databinding.FragmentDetailLayoutBinding
 import com.tomasfp.pokedex.model.PokemonDetailResponse
@@ -44,6 +43,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail_layout) {
                         binding.loadingAnim.gone()
                         setDetails(it.detail)
                     }
+                    is DetailViewModel.State.Error -> {}
                 }
             }
         }
@@ -57,7 +57,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail_layout) {
             with(args.pokemon) {
                 pokemonName.text = capitalName()
                 textViewType.text = mainType().name
-                imageView.load(getPokemonImage()) { placeholder(R.drawable.ic_pokeball) }
+                //imageView.load(getPokemonImage()) { placeholder(R.drawable.ic_pokeball) }
             }
         }
     }

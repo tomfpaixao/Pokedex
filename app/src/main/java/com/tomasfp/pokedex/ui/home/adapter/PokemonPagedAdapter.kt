@@ -8,7 +8,6 @@ import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
 import com.tomasfp.pokedex.R
 import com.tomasfp.pokedex.databinding.PokemonListItemBinding
 import com.tomasfp.pokedex.model.PokemonModel
@@ -53,7 +52,7 @@ class PokemonViewHolder(
             with(binding) {
                 textViewName.text = pokemon.capitalName()
 
-                imageView.load(pokemon.getPokemonImage()) { placeholder(R.drawable.ic_pokeball)}
+                //imageView.load(pokemon.getPokemonImage()) { placeholder(R.drawable.ic_pokeball)}
                 root.context.let {
                     textViewID.text = it.getString(R.string.pokemon_index_placeholder,pokemon.getPokemonIndex())
 

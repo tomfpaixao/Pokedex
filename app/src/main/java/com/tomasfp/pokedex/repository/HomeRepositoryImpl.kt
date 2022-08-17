@@ -29,8 +29,12 @@ class HomeRepositoryImpl @Inject constructor(private val service: PokemonService
 
     override fun getPokemonDetail(name: String): Flow<Result<PokemonDetailResponse>> {
         return flow {
-            val pokemon = service.getPokemonDetail(name)
-            emit(Result.success(pokemon))
+            try {
+                val pokemon = service.getPokemonDetail(name)
+                emit(Result.success(pokemon))
+            } catch (e : Exception) {
+                emit(Result.failure(e))
+            }
         }
     }
 

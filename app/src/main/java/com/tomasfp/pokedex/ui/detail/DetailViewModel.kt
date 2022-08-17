@@ -16,9 +16,6 @@ class DetailViewModel @Inject constructor(private val repository: HomeRepository
     private val _state = MutableStateFlow<State>(State.Loading)
     val state: StateFlow<State> = _state
 
-    private val _event = Channel<Event>()
-    val event: Flow<Event> = _event.receiveAsFlow()
-
     fun getPokemonDetail(name: String) {
         viewModelScope.launch {
             _state.value = State.Loading
@@ -27,7 +24,7 @@ class DetailViewModel @Inject constructor(private val repository: HomeRepository
                     _state.value = State.PokemonDetail(it)
                 }
                 result.onFailure {
-                    _event.send(Event.Error)
+                    _state.value = State.Error(it.localizedMessage)
                 }
             }
         }
@@ -35,6 +32,7 @@ class DetailViewModel @Inject constructor(private val repository: HomeRepository
 
     sealed class State {
         object Loading : State()
+        data class Error(val message: String?) : State()
         data class PokemonDetail(val detail: PokemonDetailResponse) : State()
     }
 

@@ -25,7 +25,9 @@ object Dependencies {
 
         object Paging3 {
             private const val version = "3.1.0"
+            private const val composeVersion = "1.0.0-alpha16"
             const val paging3 = "androidx.paging:paging-runtime:$version"
+            const val pagingCompose = "androidx.paging:paging-compose:$composeVersion"
         }
 
         object Fragment {
@@ -35,8 +37,10 @@ object Dependencies {
 
         object Hilt {
             private const val version = "2.38.1"
+            private const val versionCompose = "1.0.0"
             const val viewModel = "androidx.hilt:hilt-lifecycle-viewmodel:$version"
             const val compiler = "androidx.hilt:hilt-android-compiler:$version"
+            const val hiltNavigationCompose = "androidx.hilt:hilt-navigation-compose:$versionCompose"
         }
 
         object Lifecycle {
@@ -111,7 +115,9 @@ object Dependencies {
 
     object Coil {
         private const val version = "0.11.0"
+        private const val composeVersion = "2.1.0"
         const val coil = "io.coil-kt:coil:$version"
+        const val coilCompose = "io.coil-kt:coil-compose:$composeVersion"
     }
 
     object Lottie {

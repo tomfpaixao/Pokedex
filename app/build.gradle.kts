@@ -20,6 +20,9 @@ android {
         multiDexEnabled = true
 
         testInstrumentationRunner = Configs.testInstrumentationRunner
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -42,6 +45,15 @@ android {
 
     buildFeatures {
         viewBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.2.0"
+    }
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
     }
 
     kapt {
@@ -67,13 +79,22 @@ dependencies {
     implementation(Dependencies.AndroidX.Navigation.fragment)
     implementation(Dependencies.AndroidX.Navigation.ui)
     implementation(Dependencies.AndroidX.Paging3.paging3)
+    implementation(Dependencies.AndroidX.Paging3.pagingCompose)
 
 // Material
     implementation(Dependencies.Material.material)
 
 // Dagger-Hilt
     implementation(Dependencies.Dagger.hiltAndroid)
+    implementation("androidx.compose.ui:ui:1.2.0")
+    implementation("androidx.compose.material:material:1.2.0")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.2.0")
+    implementation("androidx.navigation:navigation-compose:2.5.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
+    implementation("androidx.activity:activity-compose:1.5.1")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.2.0")
     kapt(Dependencies.Dagger.hiltAndroidCompiler)
+    implementation(Dependencies.AndroidX.Hilt.hiltNavigationCompose)
 
 // Networking
     implementation(Dependencies.Retrofit.retrofit)
@@ -87,6 +108,7 @@ dependencies {
 
 // Image Loading
     implementation(Dependencies.Coil.coil)
+    implementation(Dependencies.Coil.coilCompose)
 
     //Lottie
     implementation(Dependencies.Lottie.lottie)

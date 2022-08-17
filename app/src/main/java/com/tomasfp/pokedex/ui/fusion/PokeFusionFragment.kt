@@ -5,7 +5,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import coil.api.load
 import com.tomasfp.pokedex.R
 import com.tomasfp.pokedex.databinding.FragmentPokefusionLayoutBinding
 import com.tomasfp.pokedex.utils.viewBinding
@@ -29,7 +28,7 @@ class PokeFusionFragment : Fragment(R.layout.fragment_pokefusion_layout) {
 
         binding.fusionButton.setOnClickListener { fusePokemons() }
 
-        binding.fusionedImage.load(R.drawable.ic_pokeball)
+        //binding.fusionedImage.load(R.drawable.ic_pokeball)
 
         setObservers()
 
@@ -54,7 +53,7 @@ class PokeFusionFragment : Fragment(R.layout.fragment_pokefusion_layout) {
     private fun fusePokemons() {
         lifecycleScope.launch {
             viewModel.fuse().collectLatest {
-                binding.fusionedImage.load(it) { placeholder(R.drawable.ic_pokeball) }
+                //binding.fusionedImage.load(it) { placeholder(R.drawable.ic_pokeball) }
             }
         }
     }

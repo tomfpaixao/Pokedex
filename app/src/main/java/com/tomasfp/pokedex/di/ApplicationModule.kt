@@ -6,9 +6,12 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.tomasfp.pokedex.data.db.AppDB
 import com.tomasfp.pokedex.data.remote.PokemonService
+import com.tomasfp.pokedex.repository.HomeRepository
+import com.tomasfp.pokedex.ui.home.HomeViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
@@ -53,6 +56,14 @@ class ApplicationModule {
     @Singleton
     fun providePokemonService(retrofit: Retrofit) : PokemonService {
         return retrofit.create(PokemonService::class.java)
+    }
+
+    @Module
+    @InstallIn(ViewModelComponent::class)
+    object HomeModule {
+
+        @Provides
+        fun providesHomeViewModel(homeRepository: HomeRepository) = HomeViewModel(repository = homeRepository)
     }
 
 

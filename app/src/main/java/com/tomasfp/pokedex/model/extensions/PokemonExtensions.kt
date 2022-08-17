@@ -3,11 +3,15 @@ package com.tomasfp.pokedex.model.extensions
 import android.content.Context
 import androidx.core.content.ContextCompat
 import com.tomasfp.pokedex.R
+import com.tomasfp.pokedex.model.PokemonDetailResponse
 import com.tomasfp.pokedex.model.PokemonModel
 import com.tomasfp.pokedex.model.PokemonTypeModel
 
 fun PokemonModel.getPokemonImage() =
     "https://img.pokemondb.net/sprites/home/normal/${name.lowercase()}.png"
+
+fun PokemonDetailResponse.getPokemonImage() = "https://img.pokemondb.net/sprites/home/normal/${name.lowercase()}.png"
+
 
 fun PokemonModel.cleanId() = url.dropLast(1).split("/").last()
 

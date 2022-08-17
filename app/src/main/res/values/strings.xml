@@ -9,8 +9,7 @@
     <string name="pokefusion">PokeFusion</string>
     <string name="retry_label">Retry</string>
     <string name="pokefusion_choose">Choose your pokemon to fuse</string>
-
-
+    <string name="title_activity_main2">MainActivity2</string>
 
 
 </resources>

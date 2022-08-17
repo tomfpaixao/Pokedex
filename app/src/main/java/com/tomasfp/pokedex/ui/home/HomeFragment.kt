@@ -79,7 +79,7 @@ class HomeFragment : Fragment(R.layout.fragment_home_layout_collapse),
                 when (state) {
                     is State.Loading -> {}
                     is State.PokemonList -> {
-                        pokemonAdapter.submitData(state.pokeList)
+                        //pokemonAdapter.submitData(state.pokeList)
                     }
                 }
             }
